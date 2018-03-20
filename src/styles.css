@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-color:#8a9a98;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:150%;
+} 
+
+.btn-basic{
+    background-color: black;
+    font-size: 170%;
+    font-weight: bold;
+    border-radius:10px;
+    color:cyan;
+    padding:5px 20px;
+    box-shadow: 1px 1px #82888a;
+}
+
+.btn-job{  
+  background-color: black;
+  font-size: 170%;
+  width:100%;
+  text-align: left;
+  font-weight: bold;
+  border-radius:10px;
+  color:cyan;
+  padding:5px 20px;
+  box-shadow: 1px 1px #82888a;
+}
+
+.btn-basic:hover, .btn-job:hover{
+    background-color: gray;
+    color:blue;
+    padding:5px 20px;
+    box-shadow: 1px 1px #82888a;
+}
+
+.listJobs:nth-child(even){background-color: #f2f2f2}
+
+table{
+  width:100%;
+}
+
+.tbl_btn{
+  padding: 50%;
+  height: auto;
+}
+
+.big-checkbox {
+    width: 30px; 
+    height: 30px;
+    box-shadow: 3px 3px black;    
+}
+
+th{
+  text-align: center;
+}
+
+td{
+  text-align: left;
+  padding:0px 5px;
+}
+
+.home_msg {
+  background-color:black;
+  color:cyan;
+  padding: 150px;
+  text-align: center;
+  font-size:500%;
+  border-radius:50px;
+  box-shadow: 7px 7px #626060;
+}

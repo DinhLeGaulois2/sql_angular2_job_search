@@ -1,0 +1,78 @@
+<div class="container">
+    <br/>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 align="center">Add A New Job</h1>
+        </div>
+        <div class="panel-body">
+            <form (ngSubmit)="recordNewJob()">
+                <div class="form-group">
+                    <div *ngIf="isNewJob">
+                        <h3><b>Title: </b></h3>
+                        <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.title" name="newJob.title">
+                        <div *ngIf="isNewJob">
+                            <h3><b>Keywords: </b></h3>
+                            <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.keywords[0]" name="newJob.keywords[0]">
+                        </div>
+                        <h3><b>Description: </b></h3>
+                        <textarea class="form-control" style="font-size:2em" rows="5" [(ngModel)]="newJob.description" name="newJob.description"></textarea>
+                        <!-- <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.description" name="newJob.description"> -->
+                        <h3><b>Url: </b></h3>
+                        <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.url" name="newJob.url">
+                        <hr/>
+                        <h3><b>Company Name: </b></h3>
+                        <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.company.name" name="newJob.company.name">
+                        <!-- <h3><b>Address: </b></h3>
+                        <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.company.address" name="newJob.company.address"> -->
+                        <h3><b>County: </b></h3>
+                        <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.company.county" name="newJob.company.county">
+                        <h3><b>State: </b></h3>
+                        <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.company.state" name="newJob.company.state">
+                        <hr/>
+                        <table style="width:auto">
+                            <tr>
+                                <td>
+                                    <h3><b>HR Contact: </b></h3>
+                                </td>
+                                <td><input class="big-checkbox form-control" type="checkbox" [(ngModel)]="hasHRContact" name="hasHRContact"></td>
+                            </tr>
+                        </table>
+                        <div *ngIf="hasHRContact">
+                            <h3><b>Name: </b></h3>
+                            <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.hr_contact.name" name="newJob.hr_contact.name">
+                            <h3><b>Email: </b></h3>
+                            <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.hr_contact.email" name="newJob.hr_contact.email">
+                            <h3><b>Phone: </b></h3>
+                            <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.hr_contact.phone" name="newJob.hr_contact.phone">
+                            <h3><b>Position: </b></h3>
+                            <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.hr_contact.position" name="newJob.hr_contact.position">
+                        </div>
+                        <hr/>
+                    </div>
+                    <div *ngIf="!isNewJob">
+                        <table align="center" class="tbl_btn">
+                            <tr>
+                                <td style="width:20%">
+                                    <h3>Negative Answer</h3>
+                                </td>
+                                <td><input class="big-checkbox form-control" type="checkbox" [(ngModel)]="newJob.isNegativeAnswer"
+                                        name="newJob.isNegativeAnswer">
+                                </td>
+                            </tr>
+                        </table>
+                        <h3><b>Reply </b></h3>
+                        <textarea class="form-control" style="font-size:2em" rows="5" [(ngModel)]="newJob.reply" name="newJob.reply"></textarea>
+                        <hr/>
+                    </div>
+                    <div *ngIf="isNewJob">
+                        <h3><b>Apply Date: </b></h3>
+                        <input class="form-control" style="font-size:2em" type="text" [(ngModel)]="newJob.apply_date" name="newJob.apply_date">
+                    </div>
+                </div>
+                <br/>
+                <p align="center"><button type="submit" class="btn-basic">Save</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" (click)="cancel()" class="btn-basic">Cancel</button></p>
+            </form>
+        </div>
+    </div>
+</div>

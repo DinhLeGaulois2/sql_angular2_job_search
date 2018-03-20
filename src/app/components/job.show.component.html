@@ -1,0 +1,112 @@
+<div class="container" *ngIf="isReady">
+    <div *ngIf="isShowAll">
+        <br/>
+        <div class="panel panel-primary">
+            <table align="center" class="tbl_btn">
+                <tr>
+                    <td style="width:15%">
+                        <h3>No Reply Only</h3>
+                    </td>
+                    <td style="width:5%"><input class="big-checkbox form-control" type="checkbox" (change)="showWithOption()" [(ngModel)]="notYetReply">
+                    </td>
+                    <td style="width:17%">
+                        <h3>Most Recent First</h3>
+                    </td>
+                    <td><input class="big-checkbox form-control" type="checkbox" (change)="showWithOption()" [(ngModel)]="isMostRecentFirst">
+                    </td>
+                </tr>
+            </table>
+
+            <div class="panel-heading">
+                <h1 align="center">All Applied Job Availables</h1>
+            </div>
+            <div class="panel-body">
+                <div *ngIf="allJobs.length==0"><h1 align="center"><font color="red">No Item to Display!</font></h1></div>
+                <table *ngFor="let job of allJobs; let i = index;">
+                    <tr class="listJobs">
+                        <td>
+                            <div *ngIf="job.company.county.length">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="width:7%">
+                                            <span *ngIf="job.isNegativeAnswer"><h3>{{i+1}} - <font color="red"><b>[X]</b></font></h3></span>
+                                            <span *ngIf="!job.isNegativeAnswer"><h3>{{i+1}} - <font color="green"><b>[V]</b></font></h3></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" (click)="showJob(job.idjob)" class="btn-job">
+                                                {{job.company.name}} - {{job.company.county}}, {{job.company.state}} - {{job.title}} - {{ job.apply_date }}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div *ngIf="job.company.county.length==0">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="width:5%">
+                                            <span *ngIf="job.isNegativeAnswer"><h2><font color="red"><b>None!</b></font></h2></span>
+                                            <span *ngIf="!job.isNegativeAnswer"><h2><font color="green"><b>Hope!</b></font></h2></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" (click)="showJob(job.idjob)" class="btn-basic">
+                                                {{job.company.name}} - {{job.company.state}} - {{job.title}}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- <div *ngIf="isShowAll"> -->
+    </div>
+    <div *ngIf="!isShowAll">
+        <br/>
+        <div class="panel panel-primary" *ngIf="oneJob">
+            <div class="panel-heading">
+                <div *ngIf="oneJob.company.county.length">
+                    <h1 align="center">{{oneJob.company.name}} - {{oneJob.company.county}}, {{oneJob.company.state}} - {{oneJob.title}}</h1>
+                </div>
+
+                <div *ngIf="oneJob.company.county.length==0">
+                    <h1 align="center">{{oneJob.company.name}} - {{oneJob.company.state}} - {{oneJob.title}}</h1>
+                </div>
+            </div>
+            <div class="panel-body">
+                <p align="center"><button type="button" (click)="edit()" class="btn-basic">Edit</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" (click)="showAll()" class="btn-basic">Show All</button></p>
+                <br/>
+                <div *ngIf="oneJob.description.length">
+                    <h3>
+                        <u>Description </u> (apply: {{ oneJob.apply_date }})
+                    </h3>
+                    <span>{{ oneJob.description }}</span>
+                </div>
+                <div *ngIf="oneJob.url.length">
+                    <h3>
+                        <u>Url :</u> {{ oneJob.url }}
+                    </h3>
+                </div>
+                <div *ngIf="isContactExist()">
+                    <h3>
+                        <u>Contact :</u>
+                    </h3>
+                    <span *ngIf="oneJob.hr_contact.name">Name: {{ oneJob.hr_contact.name }}</span>
+                    <span *ngIf="oneJob.hr_contact.position">Position: {{ oneJob.hr_contact.position }}</span>
+                    <span *ngIf="oneJob.hr_contact.mail">Email: {{ oneJob.hr_contact.email }}</span>
+                    <span *ngIf="oneJob.hr_contact.phone">Phone: ({{ oneJob.hr_contact.phone }})</span>
+                </div>
+                <h3 *ngIf="oneJob.reply.length"><u>Reply:</u> {{ oneJob.reply }}</h3>
+                <div *ngIf="oneJob.keywords.length">
+                    <h3>
+                        <u>Keywords :</u> <span *ngFor="let kw of oneJob.keywords">{{ kw }}, </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <!-- show one job -->
+    </div>
+</div>
